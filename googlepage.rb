@@ -1,22 +1,22 @@
-require 'selenium-webdriver'
+require 'page-object'
 
-class GooglePage
-  
-  attr_reader :driver
-  
-  def initialize(driver)
-    @driver = driver
+class SearchPage
+  include PageObject
+
+  text_field(:searchBar, :name => 'q')
+  button(:submitSearch, :name => 'btnK')
+
+  def search(query)
+    self.searchBar = query
+    submitSearch
   end
 
-  def fillinname(name)
-    return @driver.find_element(name: 'q').send_keys(name)
+  def open
+    @browser.navigate.to('https://www.google.com')
   end
 
-  def submit_form
-    return @driver.find_element(name: 'btnK').click
+  def close
+    @browser.quit
   end
-  
-  def quit
-    @driver.quit
-  end
+
 end
