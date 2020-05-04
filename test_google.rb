@@ -1,10 +1,13 @@
 require 'selenium-webdriver'
-require '../tests/googlepage'
-
-@driver = Selenium::WebDriver.for(:firefox)
-@driver.navigate.to ('https://www.google.com')
-login = GooglePage.new(@driver)
-login.fillinname('Ruby')
-login.submit_form
-login.quit
-puts 'Successfully launched'
+require 'test/unit'
+require '../tests/search'
+class SearchPageTest < Test::Unit::TestCase
+  def test_search_page
+    @browser = Selenium::WebDriver.for :firefox
+    search_page = SearchPage.new(@browser)
+    search_page.open
+    search_page.search('page-objects')
+    sleep 2
+    search_page.close
+  end
+end
