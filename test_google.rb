@@ -9,3 +9,14 @@ login.submit_form
 sleep 5
 login.quit
 puts 'Successfully launched'
+
+
+
+
+
+
+OUTPUT :
+
+Successfully launched
+
+Process finished with exit code 0
