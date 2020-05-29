@@ -1,6 +1,7 @@
-require 'test-unit'
+# frozen_string_literal: true
 require 'page-object'
 require 'selenium-webdriver'
+require 'rubygems'
 
 class PLogin
   include PageObject
@@ -33,20 +34,17 @@ class PLogin
 
   def click_button
     @driver.find_element(:xpath, '/html/body/div/div/div/div[1]/div/div/div[2]/form/div/div[2]/input').click
-    sleep 5
   end
 
-  def search_result_present?
-
-    @driver.find_element(:xpath, '/html/body/nav/div[2]/ul/li[4]/a').click
-    sleep 2
+  def valid
+    @driver.find_element(:xpath, '/html/body/div[1]/nav/div[3]/ul/li[4]/a').click
     @driver.switch_to.alert.accept
-    puts 'user successfully logged in and out'
+    puts 'User logged in and out'
   end
 
-  def search_results
-    assert( @driver.find_element(:css, 'div.container:nth-child(1)').text.include?('Please verify your email first'), 'Assertion Passed')
-    puts 'Wrong credentials'
+  def invalid
+    @driver.find_element(:xpath, '/html/body/div/div/div/div[1]/div[1]/button').click
+    puts 'Invalid user or Verify your Mail'
   end
 
   def close
