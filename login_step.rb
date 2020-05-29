@@ -19,11 +19,11 @@ And(/^i click login button$/) do
 end
 
 Then(/^user is signed in$/) do
-  @user.search_result_present?
+  @user.valid
   @user.close
 end
 
 Then(/^user is not signed in$/) do
-  @user.search_results
+  @user.invalid
   @user.close
 end
