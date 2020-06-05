@@ -20,8 +20,7 @@ And(/^i click login button$/) do
 end
 
 And(/^i verify the logout button$/) do
-  assert(@user.valid_user.displayed?)
-  sleep(10)
+  assert(@user.logout_element_present.text.include?('Logout'), 'Assertion Failed')
 end
 
 Then(/^user is signed in$/) do
@@ -31,6 +30,5 @@ end
 
 Then(/^user is not signed in$/) do
   assert(@user.invalid_user.text.include?('Invalid credentials'), 'Please verify your email first')
-  sleep(10)
   @user.close
 end
