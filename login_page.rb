@@ -37,7 +37,7 @@ class PLogin
     @driver.find_element(:xpath, '/html/body/div/div/div/div[1]/div/div/div[2]/form/div/div[2]/input').click
   end
 
-  def valid_user
+  def logout_element_present
     @driver.find_element(:xpath, '/html/body/div[1]/nav/div[3]/ul/li[4]/a')
   end
 
