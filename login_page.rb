@@ -2,6 +2,7 @@
 require 'page-object'
 require 'selenium-webdriver'
 require 'rubygems'
+require 'cucumber'
 
 class PLogin
   include PageObject
@@ -36,15 +37,18 @@ class PLogin
     @driver.find_element(:xpath, '/html/body/div/div/div/div[1]/div/div/div[2]/form/div/div[2]/input').click
   end
 
-  def valid
-    @driver.find_element(:xpath, '/html/body/div[1]/nav/div[3]/ul/li[4]/a').click
-    @driver.switch_to.alert.accept
-    puts 'User logged in and out'
+  def valid_user
+    @driver.find_element(:xpath, '/html/body/div[1]/nav/div[3]/ul/li[4]/a')
   end
 
-  def invalid
-    @driver.find_element(:xpath, '/html/body/div/div/div/div[1]/div[1]/button').click
-    puts 'Invalid user or Verify your Mail'
+  def logout_user
+    @driver.find_element(:xpath, '/html/body/div[1]/nav/div[3]/ul/li[4]/a').click
+    sleep(2)
+    @driver.switch_to.alert.accept
+  end
+
+  def invalid_user
+    @driver.find_element(:css, 'div.container:nth-child(1)')
   end
 
   def close
